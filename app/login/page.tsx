@@ -1,6 +1,26 @@
-import React from "react";
+"use client";
+import axios from "axios";
+import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onLogin = () => {
+    if (!email || !password) return toast.error("Please fill all details");
+    const toastID = toast.loading("Logging in, please wait");
+    axios
+      .post("/api/login", { email, password })
+      .then()
+      .catch((e: any) => {
+        console.log(e);
+        toast.error(e.response.data?.message || "Something went wrong", {
+          id: toastID,
+        });
+      });
+  };
+
   return (
     <div className="flex w-full justify-center">
       <div className="flex w-full max-w-[700px] flex-col items-center gap-1 lg:gap-4">
@@ -13,13 +33,20 @@ const LoginPage = () => {
             className="w-full rounded-sm bg-gray-100 p-4 text-xs outline-none focus:outline-none lg:text-base"
             type="text"
             placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             className="w-full rounded-sm bg-gray-100 p-4 text-xs outline-none focus:outline-none lg:text-base"
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="mt-4 w-fit rounded-sm bg-black px-4 py-2 uppercase text-white">
+          <button
+            onClick={onLogin}
+            className="mt-4 w-fit rounded-sm bg-black px-4 py-2 uppercase text-white"
+          >
             Login
           </button>
         </div>
