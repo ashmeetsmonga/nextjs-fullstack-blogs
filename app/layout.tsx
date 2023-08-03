@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Navbar from "./components/Navbar";
+import ToasterProvider from "./providers/ToasterProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`min-h-screen ${poppins.className}`}>
+        <ToasterProvider />
         <Navbar />
         <div className="w-full p-5 md:p-10">{children}</div>
       </body>
