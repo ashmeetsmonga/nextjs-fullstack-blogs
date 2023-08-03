@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "./Logo";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -10,7 +11,9 @@ const Navbar = () => {
         <div>About</div>
       </div>
       <div className="flex items-center gap-8">
-        <div>Login</div>
+        <Link href="/login">
+          <div>Login</div>
+        </Link>
         <div>Register</div>
       </div>
     </div>
