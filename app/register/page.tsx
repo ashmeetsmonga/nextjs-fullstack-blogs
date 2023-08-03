@@ -12,22 +12,22 @@ const RegisterPage = () => {
         </p>
         <div className="mt-2 flex w-4/5 flex-col items-center gap-1 lg:gap-2">
           <input
-            className="w-full rounded-sm bg-gray-100 p-4 text-xs outline-none focus:outline-none lg:text-base"
+            className="w-full rounded-sm bg-gray-100 p-4 text-sm outline-none focus:outline-none lg:text-base"
             type="text"
             placeholder="Name"
           />
           <input
-            className="w-full rounded-sm bg-gray-100 p-4 text-xs outline-none focus:outline-none lg:text-base"
+            className="w-full rounded-sm bg-gray-100 p-4 text-sm outline-none focus:outline-none lg:text-base"
             type="text"
             placeholder="Email"
           />
           <input
-            className="w-full rounded-sm bg-gray-100 p-4 text-xs outline-none focus:outline-none lg:text-base"
+            className="w-full rounded-sm bg-gray-100 p-4 text-sm outline-none focus:outline-none lg:text-base"
             type="password"
             placeholder="Password"
           />
           <input
-            className="w-full rounded-sm bg-gray-100 p-4 text-xs outline-none focus:outline-none lg:text-base"
+            className="w-full rounded-sm bg-gray-100 p-4 text-sm outline-none focus:outline-none lg:text-base"
             type="password"
             placeholder="Confirm Password"
           />
