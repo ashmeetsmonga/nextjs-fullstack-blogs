@@ -9,8 +9,16 @@ export async function POST(req: Request) {
   if (!name || !email || !password)
     return NextResponse.json(
       { message: "Please provide name, email and password" },
-      { status: 404 },
+      { status: 400 },
     );
+
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (user)
+    return NextResponse.json(
+      { message: "Email already exists" },
+      { status: 400 },
+    );
+
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(password, salt);
   try {
@@ -23,7 +31,7 @@ export async function POST(req: Request) {
     console.log(e);
     return NextResponse.json(
       { message: "Something went wrong while creating user in db" },
-      { status: 404 },
+      { status: 400 },
     );
   }
 }
