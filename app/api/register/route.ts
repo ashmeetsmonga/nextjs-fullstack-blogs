@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import prisma from "@/app/libs/prisma";
+import { createToken } from "@/app/utils/createToken";
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -26,9 +27,13 @@ export async function POST(req: Request) {
     const user = await prisma.user.create({
       data: { name, username, email, hashedPassword },
     });
-    return NextResponse.json(user);
+    const response = NextResponse.json(user);
+
+    const token = await createToken({ id: user.id, email: user.email! });
+    response.cookies.set("token", token);
+
+    return response;
   } catch (e: any) {
-    console.log(e);
     return NextResponse.json(
       { message: "Something went wrong while creating user in db" },
       { status: 400 },
