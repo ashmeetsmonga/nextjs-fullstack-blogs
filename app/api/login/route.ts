@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import prisma from "@/app/libs/prisma";
+import { createToken } from "@/app/utils/createToken";
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -17,5 +18,10 @@ export async function POST(req: Request) {
   if (!isPasswordCorrect)
     return NextResponse.json({ message: "Invalid password" }, { status: 404 });
 
-  return NextResponse.json(user);
+  const token = await createToken({ id: user.id, email: user.email! });
+
+  const response = NextResponse.json(user);
+  response.cookies.set("token", token);
+
+  return response;
 }
