@@ -7,6 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "../store/userStore";
 import { toast } from "react-hot-toast";
+import { IoMdAdd } from "react-icons/io";
 
 const Navbar = () => {
   const router = useRouter();
@@ -44,9 +45,8 @@ const Navbar = () => {
         <Suspense fallback={"Loading..."}>
           {user ? (
             <>
-              <div>{user.name}</div>
               <Link href="/create">
-                <div>New Blog</div>
+                <IoMdAdd size={25} />
               </Link>
               <button onClick={onLogout}>Logout</button>
             </>
