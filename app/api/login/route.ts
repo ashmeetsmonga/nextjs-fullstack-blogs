@@ -4,7 +4,6 @@ import prisma from "@/app/libs/prisma";
 import { createToken } from "@/app/utils/token";
 
 export async function POST(req: NextRequest) {
-  console.log("Ashmeet", req.headers.get("userID"));
   const body = await req.json();
   const { email, password } = body;
 

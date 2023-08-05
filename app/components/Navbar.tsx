@@ -5,13 +5,19 @@ import Logo from "./Logo";
 import Link from "next/link";
 import axios from "axios";
 import { ProfileData } from "@/types";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     axios.get("/api/auth/profile").then((data) => setProfileData(data.data));
   }, []);
+
+  const onLogout = () => {
+    axios.get("/api/auth/logout").then(() => router.push("/"));
+  };
 
   return (
     <div className="flex w-full justify-between p-5 lg:px-10">
@@ -24,9 +30,7 @@ const Navbar = () => {
         <Suspense fallback={"Loading..."}>
           {profileData ? (
             <>
-              <Link href="/login">
-                <div>Logout</div>
-              </Link>
+              <button onClick={onLogout}>Logout</button>
             </>
           ) : (
             <>
