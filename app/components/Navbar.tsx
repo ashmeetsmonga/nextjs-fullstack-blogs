@@ -6,21 +6,21 @@ import Link from "next/link";
 import axios from "axios";
 import { ProfileData } from "@/types";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "../store/userStore";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    axios
-      .get("/api/auth/profile")
-      .then((data) => setProfileData(data.data))
-      .catch((e: any) => {});
-  }, []);
+  const user = useUserStore((state) => state.user);
+  const logoutUser = useUserStore((state) => state.logoutUser);
 
   const onLogout = () => {
+    const toastID = toast.loading("Logging out");
     axios.get("/api/auth/logout").then(() => {
-      setProfileData(null);
+      logoutUser();
+      toast.success("Logged Out", { id: toastID });
       router.push("/");
     });
   };
@@ -34,7 +34,7 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-8">
         <Suspense fallback={"Loading..."}>
-          {profileData ? (
+          {user ? (
             <>
               <button onClick={onLogout}>Logout</button>
             </>
