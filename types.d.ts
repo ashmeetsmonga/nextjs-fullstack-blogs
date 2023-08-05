@@ -11,3 +11,8 @@ interface TokenPayload {
   iat: number;
   sub: string;
 }
+
+interface ProfileData {
+  name: string;
+  email: string;
+}
