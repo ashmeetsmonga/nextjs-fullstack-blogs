@@ -35,6 +35,9 @@ const Navbar = () => {
           {user ? (
             <>
               <div>{user.name}</div>
+              <Link href="/create">
+                <div>New Blog</div>
+              </Link>
               <button onClick={onLogout}>Logout</button>
             </>
           ) : (
