@@ -2,6 +2,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useUserStore } from "../store/userStore";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -9,15 +11,25 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const router = useRouter();
+
+  const loginUser = useUserStore((state) => state.loginUser);
+
   const onRegister = () => {
     if (!name || !email || !password || !confirmPassword)
       return toast.error("Please fill all details");
+
     if (password !== confirmPassword)
       return toast.error("Password and Confirm password do not match");
+
     const toastID = toast.loading("Registering, please wait");
     axios
       .post("/api/register", { name, email, password })
-      .then()
+      .then((data) => {
+        toast.success("Register successful", { id: toastID });
+        loginUser(data.data);
+        router.push("/");
+      })
       .catch((e: any) => {
         console.log(e);
         toast.error(e.response.data?.message || "Something went wrong", {
