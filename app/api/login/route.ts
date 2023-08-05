@@ -1,9 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import prisma from "@/app/libs/prisma";
 import { createToken } from "@/app/utils/createToken";
+import { AuthNextRequest } from "@/types";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  console.log("Ashmeet userID", req.headers.get("userID"));
   const body = await req.json();
   const { email, password } = body;
 
