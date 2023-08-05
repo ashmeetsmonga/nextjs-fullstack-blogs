@@ -10,15 +10,13 @@ export async function middleware(request: NextRequest) {
 
 async function authMiddleware(request: NextRequest) {
   const token = request.cookies.get("token");
-  if (token?.value) {
-    try {
-      const payload: TokenPayload = await decodeToken(token.value);
-      const response = NextResponse.next();
-      response.headers.set("userID", payload.id);
-      return response;
-    } catch (e: any) {
-      return NextResponse.json({ msg: "Invalid Token" }, { status: 400 });
-    }
+  try {
+    const payload: TokenPayload = await decodeToken(token?.value!);
+    const response = NextResponse.next();
+    response.headers.set("userID", payload.id);
+    return response;
+  } catch (e: any) {
+    return NextResponse.json({ msg: "Invalid Token" }, { status: 400 });
   }
 }
 

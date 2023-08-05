@@ -12,11 +12,17 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    axios.get("/api/auth/profile").then((data) => setProfileData(data.data));
+    axios
+      .get("/api/auth/profile")
+      .then((data) => setProfileData(data.data))
+      .catch((e: any) => {});
   }, []);
 
   const onLogout = () => {
-    axios.get("/api/auth/logout").then(() => router.push("/"));
+    axios.get("/api/auth/logout").then(() => {
+      setProfileData(null);
+      router.push("/");
+    });
   };
 
   return (
