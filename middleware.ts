@@ -4,6 +4,11 @@ import { decodeToken } from "./app/utils/token";
 import { TokenPayload } from "./types";
 
 export async function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith("/api/auth"))
+    return authMiddleware(request);
+}
+
+async function authMiddleware(request: NextRequest) {
   const token = request.cookies.get("token");
   if (token?.value) {
     try {
@@ -17,7 +22,6 @@ export async function middleware(request: NextRequest) {
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/api/:path*"],
+  matcher: ["/api/auth/:path*"],
 };
