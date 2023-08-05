@@ -12,7 +12,17 @@ const Navbar = () => {
   const router = useRouter();
 
   const user = useUserStore((state) => state.user);
+  const loginUser = useUserStore((state) => state.loginUser);
   const logoutUser = useUserStore((state) => state.logoutUser);
+
+  useEffect(() => {
+    if (!user) {
+      axios
+        .get("/api/auth/profile")
+        .then((data) => loginUser(data.data))
+        .catch((e) => {});
+    }
+  }, []);
 
   const onLogout = () => {
     const toastID = toast.loading("Logging out");

@@ -27,7 +27,7 @@ const CreatePage = () => {
         theme="snow"
       />
       <button className="mt-4 w-fit rounded-sm bg-black px-4 py-2 uppercase text-white">
-        Login
+        Create New Blog
       </button>
     </div>
   );
