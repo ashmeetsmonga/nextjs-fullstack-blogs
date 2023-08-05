@@ -4,13 +4,11 @@ import React, { Suspense, useEffect, useState } from "react";
 import Logo from "./Logo";
 import Link from "next/link";
 import axios from "axios";
-import { ProfileData } from "@/types";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "../store/userStore";
 import { toast } from "react-hot-toast";
 
 const Navbar = () => {
-  const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const router = useRouter();
 
   const user = useUserStore((state) => state.user);
@@ -36,6 +34,7 @@ const Navbar = () => {
         <Suspense fallback={"Loading..."}>
           {user ? (
             <>
+              <div>{user.name}</div>
               <button onClick={onLogout}>Logout</button>
             </>
           ) : (
