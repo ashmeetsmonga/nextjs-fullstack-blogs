@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -7,12 +8,17 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const router = useRouter();
+
   const onLogin = () => {
     if (!email || !password) return toast.error("Please fill all details");
     const toastID = toast.loading("Logging in, please wait");
     axios
       .post("/api/login", { email, password })
-      .then()
+      .then(() => {
+        toast.success("Login successful", { id: toastID });
+        router.push("/");
+      })
       .catch((e: any) => {
         console.log(e);
         toast.error(e.response.data?.message || "Something went wrong", {
