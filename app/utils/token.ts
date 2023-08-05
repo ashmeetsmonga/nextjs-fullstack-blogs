@@ -1,4 +1,4 @@
-import { SignJWT } from "jose";
+import { SignJWT, jwtVerify } from "jose";
 
 export const createToken = async (payload: { id: string; email: string }) => {
   try {
@@ -13,4 +13,10 @@ export const createToken = async (payload: { id: string; email: string }) => {
   } catch (error) {
     throw error;
   }
+};
+
+export const decodeToken = async <T>(token: string): Promise<T> => {
+  return (
+    await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET))
+  ).payload as T;
 };

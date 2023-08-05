@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import prisma from "@/app/libs/prisma";
-import { createToken } from "@/app/utils/createToken";
+import { createToken } from "@/app/utils/token";
 
 export async function POST(req: Request) {
   const body = await req.json();
