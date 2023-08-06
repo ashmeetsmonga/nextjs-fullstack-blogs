@@ -10,7 +10,7 @@ interface BlogProps {
 const Blog: FC<BlogProps> = ({ blog }) => {
   return (
     <Link href={`/blogDetails/${blog.id}`}>
-      <div className="flex w-full items-center justify-between gap-4 p-5 transition-transform hover:scale-105">
+      <div className="flex w-full items-center justify-between gap-4 px-5 transition-transform hover:scale-105">
         <div className="relative aspect-square w-1/4 max-w-[200px] flex-shrink-0 rounded-sm">
           <Image
             src="/images/hero-image-1.jpg"

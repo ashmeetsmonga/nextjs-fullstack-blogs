@@ -12,7 +12,7 @@ const FeaturedBlog = () => {
           objectFit="cover"
         />
       </div>
-      <div className="relative z-10 ml-5 flex h-4/5 w-1/2 flex-col justify-center gap-4 bg-white p-10 md:w-1/3 lg:ml-10">
+      <div className="relative z-10 ml-5 flex h-4/5 w-1/2 flex-col justify-center gap-4 bg-white p-10 lg:ml-10 lg:w-1/3">
         <div>
           <div className="text-xs font-light uppercase text-gray-400 lg:text-lg">
             Featured Blog

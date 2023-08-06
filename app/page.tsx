@@ -6,7 +6,7 @@ import BlogListLoader from "./components/BlogListLoader";
 
 export default async function Home() {
   return (
-    <div className="flex w-full max-w-[1400px] flex-col gap-2">
+    <div className="flex w-full max-w-[1400px] flex-col gap-4 lg:gap-8">
       <FeaturedBlog />
       <Suspense fallback={<BlogListLoader />}>
         <BlogList />
