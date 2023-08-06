@@ -9,12 +9,13 @@ interface BlogProps {
 const Blog: FC<BlogProps> = ({ blog }) => {
   return (
     <div className="flex w-full items-center justify-between gap-4 p-5">
-      <div className="relative aspect-square w-1/4 max-w-[200px] flex-shrink-0">
+      <div className="relative aspect-square w-1/4 max-w-[200px] flex-shrink-0 rounded-sm">
         <Image
           src="/images/hero-image-1.jpg"
           alt="featured-blog-image"
           fill
           objectFit="cover"
+          className="rounded-sm"
         />
       </div>
       <div className="flex w-full flex-col lg:gap-2">
