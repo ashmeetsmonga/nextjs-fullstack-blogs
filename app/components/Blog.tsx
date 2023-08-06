@@ -25,7 +25,7 @@ const Blog: FC<BlogProps> = ({ blog }) => {
             Nature
           </div>
           <div className="font-semibold capitalize lg:text-4xl">
-            {blog.title}
+            {blog.title.substring(0, 20)}
           </div>
           <div className="flex gap-4 text-xs font-light text-gray-400 lg:text-sm">
             <p>{blog.user.name}</p>
@@ -33,7 +33,7 @@ const Blog: FC<BlogProps> = ({ blog }) => {
           </div>
           <div
             className="text-xs font-light lg:text-sm"
-            dangerouslySetInnerHTML={{ __html: blog.body }}
+            dangerouslySetInnerHTML={{ __html: blog.body.substring(0, 100) }}
           />
         </div>
       </div>
