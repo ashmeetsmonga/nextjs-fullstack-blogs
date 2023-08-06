@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { getFeatureBlog } from "../actions/getFeatureBlog";
+import parse from "html-react-parser";
 
 const FeaturedBlog = async () => {
   const featureBlog = await getFeatureBlog();
@@ -28,12 +29,9 @@ const FeaturedBlog = async () => {
           <p>{featureBlog?.user.name}</p>
           <p>{featureBlog?.user.createdAt.toDateString()}</p>
         </div>
-        <p
-          className="text-xs font-light lg:text-sm"
-          dangerouslySetInnerHTML={{
-            __html: featureBlog?.body.substring(0, 200)!,
-          }}
-        />
+        <div className="text-xs font-light lg:text-sm">
+          {parse(featureBlog!.body.substring(0, 200))}
+        </div>
       </div>
     </div>
   );
