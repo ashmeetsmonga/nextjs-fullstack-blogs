@@ -1,7 +1,9 @@
 import Image from "next/image";
 import React from "react";
+import { getFeatureBlog } from "../actions/getFeatureBlog";
 
-const FeaturedBlog = () => {
+const FeaturedBlog = async () => {
+  const featureBlog = await getFeatureBlog();
   return (
     <div className="relative h-[30rem] w-full px-5">
       <div className="absolute left-0 top-0 h-full w-full">
@@ -19,18 +21,19 @@ const FeaturedBlog = () => {
             Featured Blog
           </div>
           <div className="text-2xl font-semibold capitalize lg:text-4xl">
-            World's most dangerous technology ever made
+            {featureBlog?.title.substring(0, 40)}
           </div>
         </div>
         <div className="flex gap-4 text-xs font-light text-gray-400 lg:text-sm">
-          <p>Ralph Lauren</p>
-          <p>01 Aug 2023</p>
+          <p>{featureBlog?.user.name}</p>
+          <p>{featureBlog?.user.createdAt.toDateString()}</p>
         </div>
-        <p className="text-xs font-light lg:text-sm">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-          nesciunt distinctio eum itaque alias quae nostrum odit nobis, at
-          fugiat repellendus cupiditate dolor deleniti illo delectus corrupti
-        </p>
+        <p
+          className="text-xs font-light lg:text-sm"
+          dangerouslySetInnerHTML={{
+            __html: featureBlog?.body.substring(0, 200)!,
+          }}
+        />
       </div>
     </div>
   );
