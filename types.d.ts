@@ -1,3 +1,4 @@
+import { Blog } from "@prisma/client";
 import { NextRequest } from "next/server";
 
 export interface AuthNextRequest extends NextRequest {
@@ -15,4 +16,8 @@ interface TokenPayload {
 interface ProfileData {
   name: string;
   email: string;
+}
+
+interface BlogWithUser extends Blog {
+  user: { name: string | null; createdAt: Date };
 }
