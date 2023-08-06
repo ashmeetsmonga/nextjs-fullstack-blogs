@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 
 const BlogDetailsPage = async ({ params }: { params: { id: string } }) => {
   const blog = await getBlogDetails(params.id);
-  console.log(blog);
+
   return (
     <div className="flex flex-col items-center gap-4 lg:gap-8">
       <div className="relative h-[15rem] w-full rounded-sm lg:h-[30rem]">
