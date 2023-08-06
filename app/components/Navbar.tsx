@@ -27,7 +27,7 @@ const Navbar = () => {
 
   const onLogout = () => {
     const toastID = toast.loading("Logging out");
-    axios.get("/api/auth/logout").then(() => {
+    axios.get("/api/logout").then(() => {
       logoutUser();
       toast.success("Logged Out", { id: toastID });
       router.push("/");
