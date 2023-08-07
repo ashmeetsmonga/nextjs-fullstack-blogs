@@ -38,7 +38,9 @@ const Navbar = () => {
     <div className="flex w-full justify-between p-5 lg:px-10">
       <div className="flex items-center gap-8">
         <Logo />
-        <div>Home</div>
+        <Link href="/">
+          <div>Home</div>
+        </Link>
         <div>About</div>
       </div>
       <div className="flex items-center gap-8">
