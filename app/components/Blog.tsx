@@ -20,7 +20,7 @@ const Blog: FC<BlogProps> = ({ blog }) => {
             className="rounded-sm"
           />
         </div>
-        <div className="flex w-full flex-col lg:gap-2">
+        <div className="flex w-full flex-col gap-1 lg:gap-2">
           <div className="text-xs font-light uppercase text-gray-400 lg:text-xl">
             Nature
           </div>
