@@ -23,6 +23,7 @@ const FeaturedBlog = async () => {
           </div>
           <div className="text-2xl font-semibold capitalize lg:text-4xl">
             {featureBlog?.title.substring(0, 40)}
+            {featureBlog?.title.length! > 40 ? "..." : ""}
           </div>
         </div>
         <div className="flex gap-4 text-xs font-light text-gray-400 lg:text-sm">
@@ -30,7 +31,9 @@ const FeaturedBlog = async () => {
           <p>{featureBlog?.user.createdAt.toDateString()}</p>
         </div>
         <div className="text-xs font-light lg:text-sm">
-          {parse(featureBlog!.body.substring(0, 200))}
+          {featureBlog!.body.length > 200
+            ? parse(featureBlog!.body.substring(0, 200) + "...")
+            : parse(featureBlog!.body.substring(0, 200))}
         </div>
       </div>
     </div>
