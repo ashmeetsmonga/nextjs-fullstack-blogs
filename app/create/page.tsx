@@ -29,7 +29,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 lg:gap-6">
+    <div className="flex w-full max-w-[1000px] flex-col items-center gap-4 lg:gap-6">
       <h1 className="text-2xl font-semibold lg:text-4xl">Create New Blog</h1>
       <input
         className="w-full rounded-sm bg-gray-100 p-4 text-xs outline-none focus:outline-none lg:w-1/2 lg:text-base"
@@ -38,12 +38,9 @@ const CreatePage = () => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <ReactQuill
-        value={body}
-        onChange={setBody}
-        className="w-full lg:w-1/2"
-        theme="snow"
-      />
+      <div className="w-full">
+        <ReactQuill value={body} onChange={setBody} theme="snow" />
+      </div>
       <button
         onClick={onSubmit}
         className="mt-4 w-fit rounded-sm bg-black px-4 py-2 uppercase text-white"
