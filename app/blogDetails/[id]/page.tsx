@@ -26,7 +26,7 @@ const BlogDetailsPage = async ({ params }: { params: { id: string } }) => {
           <div>{blog?.createdAt.toDateString()}</div>
         </div>
         <div
-          className="text-xs font-light lg:text-sm"
+          className="text-sm font-light"
           dangerouslySetInnerHTML={{ __html: blog!.body }}
         />
       </div>

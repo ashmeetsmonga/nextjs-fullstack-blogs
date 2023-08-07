@@ -19,7 +19,7 @@ const FeaturedBlog = async () => {
             className=""
           />
         </div>
-        <div className="relative z-10 flex h-1/2 flex-col justify-center gap-2 bg-white p-10 lg:ml-10 lg:h-4/5 lg:w-1/3 lg:gap-4">
+        <div className="relative z-10 flex h-3/5 flex-col justify-center gap-2 bg-white p-10 lg:ml-10 lg:h-4/5 lg:w-1/3 lg:gap-4">
           <div>
             <div className="text-base font-light uppercase text-gray-400 lg:text-lg">
               Featured Blog
