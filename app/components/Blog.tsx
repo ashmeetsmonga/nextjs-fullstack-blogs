@@ -11,7 +11,7 @@ const Blog: FC<BlogProps> = ({ blog }) => {
   return (
     <Link href={`/blogDetails/${blog.id}`}>
       <div className="flex w-full items-center justify-between gap-4 px-5 transition-transform hover:scale-105">
-        <div className="relative aspect-square w-1/4 max-w-[200px] flex-shrink-0 rounded-sm">
+        <div className="relative aspect-square w-1/3 max-w-[200px] flex-shrink-0 rounded-sm">
           <Image
             src="/images/hero-image-1.jpg"
             alt="featured-blog-image"
@@ -24,8 +24,9 @@ const Blog: FC<BlogProps> = ({ blog }) => {
           <div className="text-xs font-light uppercase text-gray-400 lg:text-xl">
             Nature
           </div>
-          <div className="font-semibold capitalize lg:text-4xl">
-            {blog.title.substring(0, 20)}
+          <div className="font-semibold capitalize lg:text-2xl">
+            {blog.title.substring(0, 60)}
+            {blog.title.length > 60 ? "..." : ""}
           </div>
           <div className="flex gap-4 text-xs font-light text-gray-400 lg:text-sm">
             <p>{blog.user.name}</p>
@@ -33,7 +34,9 @@ const Blog: FC<BlogProps> = ({ blog }) => {
           </div>
           <div
             className="text-xs font-light lg:text-sm"
-            dangerouslySetInnerHTML={{ __html: blog.body.substring(0, 100) }}
+            dangerouslySetInnerHTML={{
+              __html: blog.body.substring(0, 80) + "...",
+            }}
           />
         </div>
       </div>
