@@ -5,10 +5,10 @@ export async function POST(req: NextRequest) {
   try {
     const userID = req.headers.get("userID");
 
-    const { title, body } = await req.json();
+    const { title, category, body } = await req.json();
 
     const blog = await prisma.blog.create({
-      data: { title, body, userId: userID! },
+      data: { title, category, body, userId: userID! },
     });
     return NextResponse.json(
       { msg: "Blog created successfully" },

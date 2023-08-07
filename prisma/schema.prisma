@@ -30,6 +30,7 @@ model Blog {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String   @db.ObjectId
+  category  String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
