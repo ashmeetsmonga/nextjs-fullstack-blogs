@@ -29,7 +29,7 @@ const Blog: FC<BlogProps> = ({ blog }) => {
           </div>
           <div className="flex gap-4 text-xs font-light text-gray-400 lg:text-sm">
             <p>{blog.user.name}</p>
-            <p>{blog.user.createdAt.toDateString()}</p>
+            <p>{blog.createdAt.toDateString()}</p>
           </div>
           <div
             className="text-xs font-light lg:text-sm"

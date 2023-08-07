@@ -22,7 +22,7 @@ const BlogDetailsPage = async ({ params }: { params: { id: string } }) => {
         </h1>
         <div className="flex justify-center gap-4 text-sm font-light text-gray-400 lg:text-base">
           <div>{blog?.user?.name}</div>
-          <div>{blog?.user.createdAt.toDateString()}</div>
+          <div>{blog?.createdAt.toDateString()}</div>
         </div>
         <div
           className="text-xs font-light lg:text-sm"
