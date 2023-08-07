@@ -25,18 +25,28 @@ const Blog: FC<BlogProps> = ({ blog }) => {
           <div className="text-xs font-light uppercase text-gray-400 lg:text-xl">
             {blog.category}
           </div>
-          <div className="font-semibold capitalize lg:text-2xl">
-            {blog.title.substring(0, 50)}
-            {blog.title.length > 50 ? "..." : ""}
+          <div className="font-semibold capitalize lg:hidden lg:text-2xl">
+            {blog.title.substring(0, 40)}
+            {blog.title.length > 40 ? "..." : ""}
+          </div>
+          <div className="hidden font-semibold capitalize lg:block lg:text-2xl">
+            {blog.title.substring(0, 80)}
+            {blog.title.length > 80 ? "..." : ""}
           </div>
           <div className="flex gap-4 text-xs font-light text-gray-400 lg:text-sm">
             <p>{blog.user.name}</p>
             <p>{blog.createdAt.toDateString()}</p>
           </div>
           <div
-            className="text-xs font-light lg:text-sm"
+            className="text-xs font-light lg:hidden lg:text-sm"
             dangerouslySetInnerHTML={{
               __html: blog.body.substring(0, 80) + "...",
+            }}
+          />
+          <div
+            className="hidden text-xs font-light lg:block lg:text-sm"
+            dangerouslySetInnerHTML={{
+              __html: blog.body.substring(0, 150) + "...",
             }}
           />
         </div>
