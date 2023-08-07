@@ -13,9 +13,8 @@ export const categories = [
   "personal finance",
   "home and gardening",
   "social issues",
-  "technology reviews",
   "humor and satire",
   "history and heritage",
-  "Mmotivation and inspiration",
+  "motivation and inspiration",
   "photography",
 ];

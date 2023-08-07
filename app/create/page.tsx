@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "../store/userStore";
+import { categories } from "../categories";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -14,8 +15,6 @@ const CreatePage = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("technology");
   const [body, setBody] = useState("");
-
-  const categories = useUserStore((state) => state.categories);
 
   const router = useRouter();
 
