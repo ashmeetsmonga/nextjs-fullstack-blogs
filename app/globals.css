@@ -5,3 +5,7 @@
 .ql-editor {
   min-height: 300px;
 }
+
+strong {
+  font-weight: 700;
+}

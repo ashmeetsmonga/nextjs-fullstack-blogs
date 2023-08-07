@@ -2,6 +2,7 @@ import { BlogWithUser } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
+import { categories } from "../categories";
 
 interface BlogProps {
   blog: BlogWithUser;
@@ -13,7 +14,7 @@ const Blog: FC<BlogProps> = ({ blog }) => {
       <div className="flex w-full items-center justify-between gap-4 px-5 transition-transform hover:scale-105">
         <div className="relative aspect-square w-1/3 max-w-[200px] flex-shrink-0 rounded-sm">
           <Image
-            src="/images/hero-image-1.jpg"
+            src={`/images/${categories.indexOf(blog!.category)}.jpg`}
             alt="featured-blog-image"
             fill
             objectFit="cover"

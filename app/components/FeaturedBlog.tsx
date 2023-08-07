@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { getFeatureBlog } from "../actions/getFeatureBlog";
 import parse from "html-react-parser";
+import { categories } from "../categories";
 
 const FeaturedBlog = async () => {
   const featureBlog = await getFeatureBlog();
@@ -9,7 +10,7 @@ const FeaturedBlog = async () => {
     <div className="relative h-[30rem] w-full px-5">
       <div className="absolute left-0 top-0 h-full w-full">
         <Image
-          src="/images/hero-image-1.jpg"
+          src={`/images/${categories.indexOf(featureBlog!.category)}.jpg`}
           alt="featured-blog-image"
           fill
           objectFit="cover"
