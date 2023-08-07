@@ -23,11 +23,11 @@ const Blog: FC<BlogProps> = ({ blog }) => {
         </div>
         <div className="flex w-full flex-col gap-1 lg:gap-2">
           <div className="text-xs font-light uppercase text-gray-400 lg:text-xl">
-            Nature
+            {blog.category}
           </div>
           <div className="font-semibold capitalize lg:text-2xl">
-            {blog.title.substring(0, 60)}
-            {blog.title.length > 60 ? "..." : ""}
+            {blog.title.substring(0, 50)}
+            {blog.title.length > 50 ? "..." : ""}
           </div>
           <div className="flex gap-4 text-xs font-light text-gray-400 lg:text-sm">
             <p>{blog.user.name}</p>
