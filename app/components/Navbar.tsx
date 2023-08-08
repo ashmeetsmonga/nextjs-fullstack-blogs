@@ -42,15 +42,18 @@ const Navbar = () => {
   return (
     <div className="sticky left-0 top-0 z-50 flex w-full justify-between bg-white p-5 text-sm lg:px-10 lg:text-base">
       <div className="flex items-center gap-4 lg:gap-8">
-        <Logo />
-        <Link href="/">
+        <Link className="transition-transform hover:scale-105" href="/">
+          <Logo />
+        </Link>
+        <Link className="transition-transform hover:scale-105" href="/">
           <div>Home</div>
         </Link>
         <button
           onClick={() => setShowCateogoryMenu((prev) => !prev)}
           className="relative lg:hidden"
         >
-          Categories
+          <div className="transition-transform hover:scale-105">Categories</div>
+
           <div
             className={`absolute left-0 top-10 z-50 flex flex-col gap-3 rounded-xl bg-gray-900 p-4 text-white transition-transform duration-500 ${
               showCateogoryMenu ? "translate-x-0" : "-translate-x-[300px]"
