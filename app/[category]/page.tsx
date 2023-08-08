@@ -16,6 +16,11 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
         {blogs.map((blog) => (
           <Blog key={blog.id} blog={blog} />
         ))}
+        {blogs.length === 0 && (
+          <div className="w-full text-center text-2xl font-semibold">
+            No Blogs Found...
+          </div>
+        )}
       </div>
     </div>
   );
