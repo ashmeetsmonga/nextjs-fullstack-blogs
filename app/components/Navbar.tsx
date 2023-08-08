@@ -8,9 +8,12 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "../store/userStore";
 import { toast } from "react-hot-toast";
 import { IoMdAdd } from "react-icons/io";
+import { categories } from "../categories";
 
 const Navbar = () => {
   const router = useRouter();
+
+  const [showMenu, setShowMenu] = useState(false);
 
   const user = useUserStore((state) => state.user);
   const loginUser = useUserStore((state) => state.loginUser);
@@ -35,15 +38,29 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex w-full justify-between p-5 lg:px-10">
-      <div className="flex items-center gap-8">
+    <div className="flex w-full justify-between p-5 text-sm lg:px-10 lg:text-base">
+      <div className="flex items-center gap-4 lg:gap-8">
         <Logo />
         <Link href="/">
           <div>Home</div>
         </Link>
-        <div>About</div>
+        <button
+          onClick={() => setShowMenu((prev) => !prev)}
+          className="relative lg:hidden"
+        >
+          Categories
+          {showMenu && (
+            <div className="absolute left-0 top-10 z-50 flex flex-col gap-3 rounded rounded-t-none border-2 border-t-0 bg-white px-4 py-2">
+              {categories.map((category, idx) => (
+                <Link href={`/${category}`}>
+                  <div className="text-left capitalize">{category}</div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </button>
       </div>
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-4 lg:gap-8">
         <Suspense fallback={"Loading..."}>
           {user ? (
             <>
