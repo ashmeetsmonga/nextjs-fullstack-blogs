@@ -4,6 +4,7 @@ import BlogList from "./components/BlogList";
 import FeaturedBlog from "./components/FeaturedBlog";
 import BlogListLoader from "./components/BlogListLoader";
 import FeaturedBlogLoader from "./components/FeaturedBlogLoader";
+import Categories from "./components/Categories";
 
 export default async function Home() {
   return (
@@ -11,9 +12,12 @@ export default async function Home() {
       <Suspense fallback={<FeaturedBlogLoader />}>
         <FeaturedBlog />
       </Suspense>
-      <Suspense fallback={<BlogListLoader />}>
-        <BlogList />
-      </Suspense>
+      <div className="flex justify-between">
+        <Suspense fallback={<BlogListLoader />}>
+          <BlogList />
+        </Suspense>
+        <Categories />
+      </div>
     </div>
   );
 }
