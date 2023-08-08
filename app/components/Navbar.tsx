@@ -49,15 +49,19 @@ const Navbar = () => {
           className="relative lg:hidden"
         >
           Categories
-          {showMenu && (
-            <div className="absolute left-0 top-10 z-50 flex flex-col gap-3 rounded rounded-t-none border-2 border-t-0 bg-white px-4 py-2">
-              {categories.map((category, idx) => (
-                <Link href={`/${category}`}>
-                  <div className="text-left capitalize">{category}</div>
-                </Link>
-              ))}
-            </div>
-          )}
+          <div
+            className={`absolute left-0 top-10 z-50 flex flex-col gap-3 rounded border-2 bg-white px-4 py-2 transition-transform duration-500 ${
+              showMenu ? "translate-y-0" : "-translate-y-[850px]"
+            }`}
+          >
+            {categories.map((category, idx) => (
+              <Link href={`/${category}`}>
+                <div className="text-left capitalize transition-transform hover:scale-105">
+                  {category}
+                </div>
+              </Link>
+            ))}
+          </div>
         </button>
       </div>
       <div className="flex items-center gap-4 lg:gap-8">
