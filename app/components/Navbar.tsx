@@ -55,7 +55,7 @@ const Navbar = () => {
           <div className="transition-transform hover:scale-105">Categories</div>
 
           <div
-            className={`absolute left-0 top-10 z-50 flex flex-col gap-3 rounded-xl bg-gray-900 p-4 text-white transition-transform duration-500 ${
+            className={`absolute -left-4 top-10 z-50 flex flex-col gap-3 rounded-xl bg-gray-900 p-4 text-white transition-transform duration-500 ${
               showCateogoryMenu ? "translate-x-0" : "-translate-x-[300px]"
             }`}
           >
@@ -82,7 +82,7 @@ const Navbar = () => {
               >
                 <FaUserCircle size={25} />
                 <div
-                  className={`absolute right-0 top-10 z-50 flex w-[100px] flex-col gap-3 rounded-xl bg-gray-900 p-4 text-left text-white transition-transform duration-500 lg:w-[150px] ${
+                  className={`absolute -right-4 top-10 z-50 flex w-[100px] flex-col gap-3 rounded-xl bg-gray-900 p-4 text-left text-white transition-transform duration-500 lg:w-[150px] ${
                     showUserMenu ? "translate-x-0" : "translate-x-[250px]"
                   }`}
                 >
