@@ -2,8 +2,8 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <div className="rounded-sm bg-black px-4 py-2 font-bold uppercase text-white">
-      Blogs
+    <div className="rounded-full bg-black px-3 py-1 text-3xl font-bold uppercase text-white">
+      B
     </div>
   );
 };

@@ -38,7 +38,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex w-full justify-between p-5 text-sm lg:px-10 lg:text-base">
+    <div className="sticky left-0 top-0 z-50 flex w-full justify-between bg-white p-5 text-sm lg:px-10 lg:text-base">
       <div className="flex items-center gap-4 lg:gap-8">
         <Logo />
         <Link href="/">
