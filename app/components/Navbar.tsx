@@ -9,11 +9,13 @@ import { useUserStore } from "../store/userStore";
 import { toast } from "react-hot-toast";
 import { IoMdAdd } from "react-icons/io";
 import { categories } from "../categories";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const router = useRouter();
 
-  const [showMenu, setShowMenu] = useState(false);
+  const [showCateogoryMenu, setShowCateogoryMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const user = useUserStore((state) => state.user);
   const loginUser = useUserStore((state) => state.loginUser);
@@ -45,13 +47,13 @@ const Navbar = () => {
           <div>Home</div>
         </Link>
         <button
-          onClick={() => setShowMenu((prev) => !prev)}
+          onClick={() => setShowCateogoryMenu((prev) => !prev)}
           className="relative lg:hidden"
         >
           Categories
           <div
             className={`absolute left-0 top-10 z-50 flex flex-col gap-3 rounded border-2 bg-white px-4 py-2 transition-transform duration-500 ${
-              showMenu ? "translate-y-0" : "-translate-y-[850px]"
+              showCateogoryMenu ? "translate-x-0" : "-translate-x-[300px]"
             }`}
           >
             {categories.map((category, idx) => (
@@ -71,7 +73,30 @@ const Navbar = () => {
               <Link href="/create">
                 <IoMdAdd size={25} />
               </Link>
-              <button onClick={onLogout}>Logout</button>
+              <button
+                className="relative"
+                onClick={() => setShowUserMenu((prev) => !prev)}
+              >
+                <FaUserCircle size={25} />
+                <div
+                  className={`absolute right-0 top-10 z-50 flex w-[100px] flex-col gap-3 rounded border-2 bg-white px-4 py-2 text-left transition-transform duration-500 ${
+                    showUserMenu ? "translate-x-0" : "translate-x-[250px]"
+                  }`}
+                >
+                  <Link
+                    className="transition-transform hover:scale-105"
+                    href="/"
+                  >
+                    My Blogs
+                  </Link>
+                  <div
+                    onClick={onLogout}
+                    className="text-left capitalize transition-transform hover:scale-105"
+                  >
+                    Logout
+                  </div>
+                </div>
+              </button>
             </>
           ) : (
             <>

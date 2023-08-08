@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`min-h-screen ${poppins.className}`}>
+      <body className={`min-h-screen overflow-x-hidden ${poppins.className}`}>
         <ToasterProvider />
         <Navbar />
         <div className="flex w-full justify-center p-5 lg:p-10">{children}</div>
