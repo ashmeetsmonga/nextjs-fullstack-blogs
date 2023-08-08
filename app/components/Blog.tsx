@@ -9,12 +9,15 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = ({ blog }) => {
+  const timeStamp = new Date().getTime();
   return (
     <Link href={`/blogDetails/${blog.id}`}>
       <div className="flex w-full items-center justify-between gap-4 px-5 transition-transform hover:scale-105">
         <div className="relative aspect-square w-1/3 max-w-[200px] flex-shrink-0 rounded-sm">
           <Image
-            src={`/images/${categories.indexOf(blog!.category)}.jpg`}
+            src={`/images/${categories.indexOf(
+              blog!.category,
+            )}.jpg?${timeStamp}`}
             alt="featured-blog-image"
             fill
             objectFit="cover"
