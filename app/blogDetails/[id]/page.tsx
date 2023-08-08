@@ -1,7 +1,7 @@
 import { getBlogDetails } from "@/app/actions/getBlogDetails";
 import { categories } from "@/app/categories";
 import Image from "next/image";
-import React, { Suspense } from "react";
+import React from "react";
 
 const BlogDetailsPage = async ({ params }: { params: { id: string } }) => {
   const blog = await getBlogDetails(params.id);
