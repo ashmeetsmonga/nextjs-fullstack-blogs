@@ -90,7 +90,7 @@ const Navbar = () => {
                     className="transition-transform hover:scale-105"
                     href="/"
                   >
-                    My Blogs
+                    Profile
                   </Link>
                   <div
                     onClick={onLogout}
