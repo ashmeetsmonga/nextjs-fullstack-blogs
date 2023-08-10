@@ -25,7 +25,7 @@ export async function POST(req: Request) {
   try {
     const username = email.split("@")[0];
     const user = await prisma.user.create({
-      data: { name, username, email, hashedPassword },
+      data: { name, username, email, hashedPassword, bio: "Your bio..." },
     });
     const response = NextResponse.json({
       name: user.name,
