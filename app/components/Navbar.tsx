@@ -88,7 +88,7 @@ const Navbar = () => {
                 >
                   <Link
                     className="transition-transform hover:scale-105"
-                    href="/"
+                    href={`/profile/${user.id}`}
                   >
                     Profile
                   </Link>

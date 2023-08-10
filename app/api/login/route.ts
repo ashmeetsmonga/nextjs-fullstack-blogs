@@ -20,7 +20,11 @@ export async function POST(req: NextRequest) {
 
   const token = await createToken({ id: user.id, email: user.email! });
 
-  const response = NextResponse.json({ name: user.name, email: user.email });
+  const response = NextResponse.json({
+    name: user.name,
+    email: user.email,
+    id: user.id,
+  });
   response.cookies.set("token", token);
 
   return response;

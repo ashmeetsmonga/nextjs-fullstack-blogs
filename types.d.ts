@@ -14,6 +14,7 @@ interface TokenPayload {
 }
 
 interface ProfileData {
+  id: string;
   name: string;
   email: string;
 }
