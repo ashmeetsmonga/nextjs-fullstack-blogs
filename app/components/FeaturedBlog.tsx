@@ -7,15 +7,12 @@ import Link from "next/link";
 
 const FeaturedBlog = async () => {
   const featureBlog = await getFeatureBlog();
-  const timeStamp = new Date().getTime();
   return (
     <Link href={`/blogDetails/${featureBlog!.id}`}>
       <div className="relative h-[30rem] w-full px-5 transition-transform hover:scale-105">
         <div className="absolute left-0 top-0 h-full w-full">
           <Image
-            src={`/images/${categories.indexOf(
-              featureBlog!.category,
-            )}.jpg?${timeStamp}`}
+            src={`/images/${categories.indexOf(featureBlog!.category)}.jpg`}
             alt="featured-blog-image"
             fill
             objectFit="cover"
