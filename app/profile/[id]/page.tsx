@@ -9,7 +9,7 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
     <div className="jus flex w-full flex-col items-center">
       <div className="flex w-full max-w-[1000px] items-center">
         <div className="flex w-1/3 shrink-0 justify-center">
-          <div className="rounded-full bg-black px-7 py-8 text-4xl text-white lg:px-12 lg:py-16 lg:text-9xl">
+          <div className="rounded-full bg-black px-7 py-8 text-4xl font-bold text-white lg:px-12 lg:py-16 lg:text-9xl">
             {userDetails
               ?.name!.split(" ")
               .slice(0, 2)
