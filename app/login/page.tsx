@@ -55,7 +55,7 @@ const LoginPage = () => {
           />
           <button
             onClick={onLogin}
-            className="mt-4 w-fit rounded-full bg-black px-8 py-2 uppercase text-white"
+            className="mt-4 w-fit rounded-full bg-black px-8 py-2 text-sm uppercase text-white lg:text-base"
           >
             Login
           </button>
