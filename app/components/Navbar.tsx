@@ -103,10 +103,16 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link href="/login">
+              <Link
+                className="transition-transform hover:scale-105"
+                href="/login"
+              >
                 <div>Login</div>
               </Link>
-              <Link href="/register">
+              <Link
+                className="transition-transform hover:scale-105"
+                href="/register"
+              >
                 <div>Register</div>
               </Link>
             </>
