@@ -6,6 +6,10 @@ import { TokenPayload } from "./types";
 export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith("/api/auth"))
     return authMiddleware(request);
+  else {
+    const token = request.cookies.get("token");
+    if (!token) return NextResponse.redirect(new URL("/", request.url));
+  }
 }
 
 async function authMiddleware(request: NextRequest) {
@@ -21,5 +25,5 @@ async function authMiddleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/api/auth/:path*"],
+  matcher: ["/api/auth/:path*", "/create", "/profile/:path*"],
 };
