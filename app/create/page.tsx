@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "../store/userStore";
 import { categories } from "../categories";
+import { revalidatePath } from "next/cache";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -30,6 +31,7 @@ const CreatePage = () => {
       });
       toast.success("Blog created successfully", { id: toastID });
       router.push("/");
+      router.refresh();
     } catch (e) {
       toast.error("Something went wrong", { id: toastID });
     }
