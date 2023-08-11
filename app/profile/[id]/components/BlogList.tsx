@@ -11,7 +11,7 @@ const BlogList: FC<BlogListProps> = async ({ id }) => {
   return (
     <div className="flex max-w-[1400px] flex-col gap-4 lg:gap-8">
       {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} userID={id} blog={blog} />
       ))}
     </div>
   );
