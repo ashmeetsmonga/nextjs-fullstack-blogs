@@ -5,6 +5,8 @@ import BlogListLoader from "./components/BlogListLoader";
 import FeaturedBlogLoader from "./components/FeaturedBlogLoader";
 import Categories from "./components/Categories";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   return (
     <div className="flex w-full max-w-[1400px] flex-col gap-4 lg:gap-8">

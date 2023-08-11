@@ -6,9 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useUserStore } from "../store/userStore";
 import { categories } from "../categories";
-import { revalidatePath } from "next/cache";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
