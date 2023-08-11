@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { getBlogs } from "./actions/getBlogs";
 import BlogList from "./components/BlogList";
 import FeaturedBlog from "./components/FeaturedBlog";
 import BlogListLoader from "./components/BlogListLoader";

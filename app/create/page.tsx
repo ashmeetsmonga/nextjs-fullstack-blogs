@@ -30,8 +30,8 @@ const CreatePage = () => {
         body,
       });
       toast.success("Blog created successfully", { id: toastID });
-      revalidatePath("/");
       router.push("/");
+      router.refresh();
     } catch (e) {
       toast.error("Something went wrong", { id: toastID });
     }
