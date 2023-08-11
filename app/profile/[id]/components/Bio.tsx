@@ -1,6 +1,9 @@
 "use client";
 
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { BiSolidPencil } from "react-icons/bi";
 
 interface BioProps {
@@ -10,9 +13,24 @@ interface BioProps {
 const Bio: FC<BioProps> = ({ bio }) => {
   const [edit, setEdit] = useState(false);
   const [bioValue, setBioValue] = useState("");
+  const router = useRouter();
   useEffect(() => {
     if (bio) setBioValue(bio);
   }, []);
+
+  const handleSubmit = async () => {
+    setEdit(false);
+    if (bioValue === bio) return;
+    const toastID = toast.loading("Updating Bio");
+    await axios
+      .post("/api/auth/bio", { bio: bioValue })
+      .then((data: any) => {
+        toast.success(data.data.msg, { id: toastID });
+        router.refresh();
+      })
+      .catch((e: any) => toast.error(e.response.data.msg, { id: toastID }));
+  };
+
   return (
     <>
       {!edit && (
@@ -26,7 +44,10 @@ const Bio: FC<BioProps> = ({ bio }) => {
             </p>
           </div>
           <div>
-            <BiSolidPencil onClick={() => setEdit(true)} />
+            <BiSolidPencil
+              className="cursor-pointer"
+              onClick={() => setEdit(true)}
+            />
           </div>
         </div>
       )}
@@ -39,7 +60,10 @@ const Bio: FC<BioProps> = ({ bio }) => {
             onChange={(e) => setBioValue(e.target.value)}
           />
           <div className="flex w-full justify-center gap-2">
-            <button className="mt-4 w-fit rounded-full bg-black px-4 py-1 text-xs uppercase text-white">
+            <button
+              onClick={handleSubmit}
+              className="mt-4 w-fit rounded-full bg-black px-4 py-1 text-xs uppercase text-white"
+            >
               Save
             </button>
             <button
