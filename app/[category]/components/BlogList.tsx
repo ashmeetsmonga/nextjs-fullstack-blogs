@@ -1,5 +1,6 @@
 import { getBlogsByCategory } from "@/app/actions/getBlogsByCategory";
 import Blog from "@/app/components/Blog";
+import { BlogWithUser } from "@/types";
 import React, { FC } from "react";
 
 interface BlogListProps {
@@ -10,7 +11,7 @@ const BlogList: FC<BlogListProps> = async ({ category }) => {
   const blogs = await getBlogsByCategory(category.replaceAll("%20", " "));
   return (
     <div className="flex max-w-[1400px] flex-col gap-4 lg:w-3/5 lg:gap-8">
-      {blogs.map((blog) => (
+      {blogs.map((blog: BlogWithUser) => (
         <Blog key={blog.id} blog={blog} />
       ))}
       {blogs.length === 0 && (
