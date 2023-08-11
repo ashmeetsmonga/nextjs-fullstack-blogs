@@ -1,4 +1,3 @@
-import { Blog } from "@prisma/client";
 import { NextRequest } from "next/server";
 
 export interface AuthNextRequest extends NextRequest {
@@ -17,6 +16,16 @@ interface ProfileData {
   id: string;
   name: string;
   email: string;
+}
+
+interface Blog {
+  id: string;
+  title: string;
+  body: string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string;
+  category: string;
 }
 
 interface BlogWithUser extends Blog {
