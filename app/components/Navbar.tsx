@@ -46,7 +46,7 @@ const Navbar = () => {
           setShowCateogoryMenu(false);
           setShowUserMenu(false);
         }}
-        className={`absolute left-0 top-20 z-50 h-screen w-screen bg-black opacity-70 transition-opacity ${
+        className={`absolute left-0 top-[83px] z-50 h-screen w-screen bg-black opacity-70 transition-opacity ${
           showCateogoryMenu || showUserMenu ? "block" : "hidden"
         }`}
       ></div>
@@ -64,7 +64,7 @@ const Navbar = () => {
           <div className="transition-transform hover:scale-105">Categories</div>
 
           <div
-            className={`absolute -left-4 top-10 z-50 flex w-[250px] flex-col gap-3 rounded-sm bg-white p-4 text-black shadow-2xl ${
+            className={`absolute -left-4 top-12 z-50 flex w-[250px] flex-col gap-3 rounded-sm bg-white p-4 text-black ${
               showCateogoryMenu ? "block" : "hidden"
             }`}
           >
@@ -91,7 +91,7 @@ const Navbar = () => {
               >
                 <FaUserCircle size={25} />
                 <div
-                  className={`absolute -right-4 top-10 z-50 flex w-[100px] flex-col gap-3 rounded-sm bg-white p-4 text-left text-black lg:w-[150px] ${
+                  className={`absolute -right-4 top-12 z-50 flex w-[100px] flex-col gap-3 rounded-sm bg-white p-4 text-left text-black lg:w-[150px] ${
                     showUserMenu ? "block" : "hidden"
                   }`}
                 >
