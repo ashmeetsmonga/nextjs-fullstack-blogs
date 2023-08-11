@@ -1,6 +1,7 @@
 import { getUserDetails } from "@/app/actions/getUserDetails";
 import React from "react";
 import BlogList from "./components/BlogList";
+import Bio from "./components/Bio";
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {
   const userDetails = await getUserDetails(params.id);
@@ -25,14 +26,7 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
               {userDetails?.email}
             </p>
           </div>
-          <p className="hidden text-sm font-light lg:block">
-            {userDetails?.bio?.substring(0, 450) +
-              (userDetails?.bio?.length! > 450 ? "..." : "")}
-          </p>
-          <p className="text-xs font-light lg:hidden">
-            {userDetails?.bio?.substring(0, 150) +
-              (userDetails?.bio?.length! > 150 ? "..." : "")}
-          </p>
+          <Bio bio={userDetails?.bio} />
         </div>
       </div>
       <div className="mt-10 lg:mt-16">
