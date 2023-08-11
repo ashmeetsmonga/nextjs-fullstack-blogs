@@ -8,7 +8,7 @@ const Categories = () => {
       <h2 className="mb-6 text-3xl font-semibold capitalize">Categories</h2>
       <div className="flex flex-col gap-6">
         {categories.map((category, idx) => (
-          <Link href={`/${category}`}>
+          <Link key={idx} href={`/${category}`}>
             <div
               key={idx}
               className="cursor-pointer text-lg font-light capitalize transition-transform hover:scale-105"

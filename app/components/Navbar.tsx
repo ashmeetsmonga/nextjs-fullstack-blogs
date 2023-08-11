@@ -69,7 +69,7 @@ const Navbar = () => {
             }`}
           >
             {categories.map((category, idx) => (
-              <Link href={`/${category}`}>
+              <Link key={idx} href={`/${category}`}>
                 <div className="text-left capitalize transition-transform hover:scale-105">
                   {category}
                 </div>
