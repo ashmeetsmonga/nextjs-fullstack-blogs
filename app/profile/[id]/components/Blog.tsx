@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiFillDelete } from "react-icons/ai";
+import { BiSolidPencil } from "react-icons/bi";
 
 interface BlogProps {
   blog: Blog;
@@ -82,11 +83,16 @@ const Blog: FC<BlogProps> = ({ blog, userID }) => {
         </div>
       </Link>
       {canDeleteBlog && (
-        <div
-          onClick={onDelete}
-          className="absolute right-0 top-0 z-50 cursor-pointer transition-all hover:text-red-500"
-        >
-          <AiFillDelete />
+        <div className="absolute right-0 top-0 z-50 flex gap-2">
+          <div
+            onClick={onDelete}
+            className="cursor-pointer transition-all hover:text-red-500"
+          >
+            <AiFillDelete />
+          </div>
+          <div className="cursor-pointer transition-all hover:text-green-500">
+            <BiSolidPencil />
+          </div>
         </div>
       )}
     </div>
