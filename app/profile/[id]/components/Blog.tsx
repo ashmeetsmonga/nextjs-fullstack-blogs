@@ -90,7 +90,10 @@ const Blog: FC<BlogProps> = ({ blog, userID }) => {
           >
             <AiFillDelete />
           </div>
-          <div className="cursor-pointer transition-all hover:text-green-500">
+          <div
+            onClick={() => router.push(`/edit/${blog.id}`)}
+            className="cursor-pointer transition-all hover:text-green-500"
+          >
             <BiSolidPencil />
           </div>
         </div>
