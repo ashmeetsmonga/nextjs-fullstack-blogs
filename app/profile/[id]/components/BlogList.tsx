@@ -1,12 +1,8 @@
 import { getBlogsByUserID } from "@/app/actions/getBlogsByUserID";
-import React, { FC } from "react";
+import React from "react";
 import Blog from "./Blog";
 
-interface BlogListProps {
-  id: string;
-}
-
-const BlogList: FC<BlogListProps> = async ({ id }) => {
+const BlogList = async ({ id }: { id: string }) => {
   const blogs = await getBlogsByUserID(id);
   return (
     <div className="flex max-w-[1400px] flex-col gap-4 lg:gap-8">

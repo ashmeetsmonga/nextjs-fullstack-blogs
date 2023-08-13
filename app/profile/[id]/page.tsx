@@ -1,7 +1,8 @@
 import { getUserDetails } from "@/app/actions/getUserDetails";
-import React from "react";
+import React, { Suspense } from "react";
 import BlogList from "./components/BlogList";
 import Bio from "./components/Bio";
+import BlogListLoader from "@/app/components/BlogListLoader";
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {
   const userDetails = await getUserDetails(params.id);
@@ -29,8 +30,11 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
           <Bio bio={userDetails?.bio} />
         </div>
       </div>
-      <div className="mt-10 lg:mt-16">
-        <BlogList id={params.id} />
+      <div className="mt-10 w-full max-w-[1000px] lg:mt-16">
+        <Suspense fallback={<BlogListLoader />}>
+          {/* @ts-expect-error Async Server Component*/}
+          <BlogList id={params.id} />
+        </Suspense>
       </div>
     </div>
   );

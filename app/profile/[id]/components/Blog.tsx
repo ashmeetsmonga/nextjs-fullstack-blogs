@@ -20,6 +20,7 @@ interface BlogProps {
 const Blog: FC<BlogProps> = ({ blog, userID }) => {
   const user = useUserStore((state) => state.user);
   const [canDeleteBlog, setCanDeleteBlog] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const router = useRouter();
 
@@ -45,12 +46,16 @@ const Blog: FC<BlogProps> = ({ blog, userID }) => {
         href={`/blogDetails/${blog.id}`}
       >
         <div className="relative aspect-square w-1/3 max-w-[200px] flex-shrink-0 rounded-sm">
+          {!imageLoaded && (
+            <div className="aspect-square w-1/4 max-w-[200px] flex-shrink-0 bg-gray-300"></div>
+          )}
           <Image
             src={`/images/${categories.indexOf(blog!.category)}.jpg`}
             alt="featured-blog-image"
             fill
             objectFit="cover"
             className="rounded-sm"
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
         <div className="flex w-full flex-col gap-1 lg:gap-2">
