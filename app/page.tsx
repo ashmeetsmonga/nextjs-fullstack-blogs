@@ -13,7 +13,7 @@ export default async function Home() {
       <Suspense fallback={<FeaturedBlogLoader />}>
         <FeaturedBlog />
       </Suspense>
-      <div className="flex justify-between">
+      <div className="flex justify-center lg:justify-between">
         <Suspense fallback={<BlogListLoader />}>
           <BlogList />
         </Suspense>
