@@ -19,6 +19,8 @@ const Blog: FC<BlogProps> = ({ blog }) => {
             fill
             objectFit="cover"
             className="rounded-sm"
+            placeholder="blur"
+            blurDataURL="/images/blur.png"
           />
         </div>
         <div className="flex w-full flex-col gap-1 lg:gap-2">

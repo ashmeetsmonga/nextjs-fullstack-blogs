@@ -47,7 +47,7 @@ const Blog: FC<BlogProps> = ({ blog, userID }) => {
       >
         <div className="relative aspect-square w-1/3 max-w-[200px] flex-shrink-0 rounded-sm">
           {!imageLoaded && (
-            <div className="aspect-square w-1/4 max-w-[200px] flex-shrink-0 bg-gray-300"></div>
+            <div className="aspect-square w-full flex-shrink-0 bg-gray-300"></div>
           )}
           <Image
             src={`/images/${categories.indexOf(blog!.category)}.jpg`}
