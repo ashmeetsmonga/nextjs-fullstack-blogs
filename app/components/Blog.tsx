@@ -1,7 +1,9 @@
+"use client";
+
 import { BlogWithUser } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { categories } from "../categories";
 
 interface BlogProps {
@@ -9,18 +11,22 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = ({ blog }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <Link href={`/blogDetails/${blog.id}`}>
       <div className="flex w-full items-center justify-between gap-4 px-5 transition-transform hover:scale-105">
         <div className="relative aspect-square w-1/3 max-w-[200px] flex-shrink-0 rounded-sm">
+          {!imageLoaded && (
+            <div className="aspect-square w-full flex-shrink-0 animate-pulse bg-gray-300"></div>
+          )}
           <Image
             src={`/images/${categories.indexOf(blog!.category)}.jpg`}
             alt="featured-blog-image"
             fill
             objectFit="cover"
             className="rounded-sm"
-            placeholder="blur"
-            blurDataURL="/images/blur.png"
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
         <div className="flex w-full flex-col gap-1 lg:gap-2">
