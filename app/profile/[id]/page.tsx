@@ -32,7 +32,6 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
       </div>
       <div className="mt-10 w-full max-w-[1000px] lg:mt-16">
         <Suspense fallback={<BlogListLoader />}>
-          {/* @ts-expect-error Async Server Component*/}
           <BlogList id={params.id} />
         </Suspense>
       </div>
