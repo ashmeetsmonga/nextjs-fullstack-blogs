@@ -13,6 +13,11 @@ const LoginPage = () => {
 
   const loginUser = useUserStore((state) => state.loginUser);
 
+  const setDummyAccount = () => {
+    setEmail("ashmeet@gmail.com");
+    setPassword("ashmeet");
+  };
+
   const onLogin = () => {
     if (!email || !password) return toast.error("Please fill all details");
     const toastID = toast.loading("Logging in, please wait");
@@ -53,12 +58,20 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button
-            onClick={onLogin}
-            className="mt-4 w-fit rounded-full bg-black px-8 py-2 text-sm uppercase text-white lg:text-base"
-          >
-            Login
-          </button>
+          <div className="flex flex-col items-center lg:flex-row lg:gap-2">
+            <button
+              onClick={onLogin}
+              className="mt-4 w-fit rounded-full bg-black px-8 py-2 text-sm uppercase text-white lg:text-base"
+            >
+              Login
+            </button>
+            <button
+              onClick={setDummyAccount}
+              className="mt-4 w-fit rounded-full bg-black px-8 py-2 text-sm uppercase text-white lg:text-base"
+            >
+              Dummy Account
+            </button>
+          </div>
         </div>
       </div>
     </div>
