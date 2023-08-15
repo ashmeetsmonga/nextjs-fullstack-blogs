@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "./Logo";
 import Link from "next/link";
 import axios from "axios";
@@ -10,17 +10,13 @@ import { toast } from "react-hot-toast";
 import { IoMdAdd } from "react-icons/io";
 import { categories } from "../categories";
 import { FaUserCircle } from "react-icons/fa";
-import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
-interface NavbarProps {
-  isUserSignedIn: boolean;
-}
-
-const Navbar: FC<NavbarProps> = ({ isUserSignedIn }) => {
+const Navbar = () => {
   const router = useRouter();
 
   const [showCateogoryMenu, setShowCateogoryMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [loadingUser, setLoadingUser] = useState(true);
 
   const user = useUserStore((state) => state.user);
   const loginUser = useUserStore((state) => state.loginUser);
@@ -31,7 +27,8 @@ const Navbar: FC<NavbarProps> = ({ isUserSignedIn }) => {
       axios
         .get("/api/auth/profile")
         .then((data) => loginUser(data.data))
-        .catch((e) => {});
+        .catch((e) => {})
+        .finally(() => setLoadingUser(false));
     }
   }, []);
 
@@ -83,52 +80,53 @@ const Navbar: FC<NavbarProps> = ({ isUserSignedIn }) => {
         </button>
       </div>
       <div className="flex items-center gap-4 lg:gap-8">
-        {isUserSignedIn ? (
-          <>
-            <Link href="/create">
-              <IoMdAdd size={25} />
-            </Link>
-            <button
-              className="relative"
-              onClick={() => setShowUserMenu((prev) => !prev)}
-            >
-              <FaUserCircle size={25} />
-              <div
-                className={`absolute -right-4 top-12 z-50 flex w-[100px] flex-col gap-3 rounded-sm bg-white p-4 text-left text-black lg:w-[150px] ${
-                  showUserMenu ? "block" : "hidden"
-                }`}
+        {!loadingUser &&
+          (user ? (
+            <>
+              <Link href="/create">
+                <IoMdAdd size={25} />
+              </Link>
+              <button
+                className="relative"
+                onClick={() => setShowUserMenu((prev) => !prev)}
               >
-                <Link
-                  className="transition-transform hover:scale-105"
-                  href={`/profile/${user?.id}`}
-                >
-                  Profile
-                </Link>
+                <FaUserCircle size={25} />
                 <div
-                  onClick={onLogout}
-                  className="text-left capitalize transition-transform hover:scale-105"
+                  className={`absolute -right-4 top-12 z-50 flex w-[100px] flex-col gap-3 rounded-sm bg-white p-4 text-left text-black lg:w-[150px] ${
+                    showUserMenu ? "block" : "hidden"
+                  }`}
                 >
-                  Logout
+                  <Link
+                    className="transition-transform hover:scale-105"
+                    href={`/profile/${user?.id}`}
+                  >
+                    Profile
+                  </Link>
+                  <div
+                    onClick={onLogout}
+                    className="text-left capitalize transition-transform hover:scale-105"
+                  >
+                    Logout
+                  </div>
                 </div>
-              </div>
-            </button>
-          </>
-        ) : (
-          <>
-            <Link
-              className="transition-transform hover:scale-105"
-              href="/login"
-            >
-              <div>Login</div>
-            </Link>
-            <Link
-              className="transition-transform hover:scale-105"
-              href="/register"
-            >
-              <div>Register</div>
-            </Link>
-          </>
-        )}
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                className="transition-transform hover:scale-105"
+                href="/login"
+              >
+                <div>Login</div>
+              </Link>
+              <Link
+                className="transition-transform hover:scale-105"
+                href="/register"
+              >
+                <div>Register</div>
+              </Link>
+            </>
+          ))}
       </div>
     </div>
   );
