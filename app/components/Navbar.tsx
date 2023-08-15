@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { FC, Suspense, useEffect, useState } from "react";
 import Logo from "./Logo";
 import Link from "next/link";
 import axios from "axios";
@@ -10,8 +10,13 @@ import { toast } from "react-hot-toast";
 import { IoMdAdd } from "react-icons/io";
 import { categories } from "../categories";
 import { FaUserCircle } from "react-icons/fa";
+import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
-const Navbar = () => {
+interface NavbarProps {
+  isUserSignedIn: boolean;
+}
+
+const Navbar: FC<NavbarProps> = ({ isUserSignedIn }) => {
   const router = useRouter();
 
   const [showCateogoryMenu, setShowCateogoryMenu] = useState(false);
@@ -38,7 +43,6 @@ const Navbar = () => {
       router.push("/");
     });
   };
-
   return (
     <div className="sticky left-0 top-0 z-50 flex w-full justify-between bg-white p-5 text-sm lg:px-10 lg:text-base">
       <div
@@ -79,54 +83,52 @@ const Navbar = () => {
         </button>
       </div>
       <div className="flex items-center gap-4 lg:gap-8">
-        <Suspense fallback={"Loading..."}>
-          {user ? (
-            <>
-              <Link href="/create">
-                <IoMdAdd size={25} />
-              </Link>
-              <button
-                className="relative"
-                onClick={() => setShowUserMenu((prev) => !prev)}
+        {isUserSignedIn ? (
+          <>
+            <Link href="/create">
+              <IoMdAdd size={25} />
+            </Link>
+            <button
+              className="relative"
+              onClick={() => setShowUserMenu((prev) => !prev)}
+            >
+              <FaUserCircle size={25} />
+              <div
+                className={`absolute -right-4 top-12 z-50 flex w-[100px] flex-col gap-3 rounded-sm bg-white p-4 text-left text-black lg:w-[150px] ${
+                  showUserMenu ? "block" : "hidden"
+                }`}
               >
-                <FaUserCircle size={25} />
-                <div
-                  className={`absolute -right-4 top-12 z-50 flex w-[100px] flex-col gap-3 rounded-sm bg-white p-4 text-left text-black lg:w-[150px] ${
-                    showUserMenu ? "block" : "hidden"
-                  }`}
+                <Link
+                  className="transition-transform hover:scale-105"
+                  href={`/profile/${user?.id}`}
                 >
-                  <Link
-                    className="transition-transform hover:scale-105"
-                    href={`/profile/${user.id}`}
-                  >
-                    Profile
-                  </Link>
-                  <div
-                    onClick={onLogout}
-                    className="text-left capitalize transition-transform hover:scale-105"
-                  >
-                    Logout
-                  </div>
+                  Profile
+                </Link>
+                <div
+                  onClick={onLogout}
+                  className="text-left capitalize transition-transform hover:scale-105"
+                >
+                  Logout
                 </div>
-              </button>
-            </>
-          ) : (
-            <>
-              <Link
-                className="transition-transform hover:scale-105"
-                href="/login"
-              >
-                <div>Login</div>
-              </Link>
-              <Link
-                className="transition-transform hover:scale-105"
-                href="/register"
-              >
-                <div>Register</div>
-              </Link>
-            </>
-          )}
-        </Suspense>
+              </div>
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              className="transition-transform hover:scale-105"
+              href="/login"
+            >
+              <div>Login</div>
+            </Link>
+            <Link
+              className="transition-transform hover:scale-105"
+              href="/register"
+            >
+              <div>Register</div>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

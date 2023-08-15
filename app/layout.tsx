@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Navbar from "./components/Navbar";
 import ToasterProvider from "./providers/ToasterProvider";
+import { cookies } from "next/headers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -19,11 +20,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookie = cookies();
   return (
     <html lang="en">
       <body className={`min-h-screen overflow-x-hidden ${poppins.className}`}>
         <ToasterProvider />
-        <Navbar />
+        <Navbar isUserSignedIn={cookie.has("token")} />
         <div className="flex w-full justify-center p-5 lg:p-10">{children}</div>
       </body>
     </html>
